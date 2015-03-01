@@ -1,0 +1,43 @@
+FORMAT: 1A
+
+# ImageHostingService
+An API for https://github.com/Wofho/ImageHostingService
+
+
+## Categories [/categories]
+### List all Categories [GET]
++ Response 200 (application/json)
+
+        [{
+          "id": 1, "title": "top"
+        }, {
+          "id": 2, "title": "trending"
+        }, {
+          "id": 3, "title": "newest"
+        }]
+
+
+
+## Images [/images/{id}]
+A single Note object with all its details
+
+### Upload an image [POST]
++ Request (application/json)
+
+        { "title": "Squirrel", "content": "http://i.imgur.com/xHVRq7d.jpg" }
+
++ Response 201 (application/json)
+
+        { "id": 1, "title": "Squirrel", "content": "http://i.imgur.com/xHVRq7d.jpg" }
+
+
+
+### Retrieve an image [GET]
++ Response 200 (application/json)
+
+
+        { "id": 1, "title": "Squirrel", "content": "http://i.imgur.com/xHVRq7d.jpg" }
+        
+
+### Delete an image [DELETE]
++ Response 204
