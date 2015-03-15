@@ -19,24 +19,35 @@ An API for https://github.com/Wofho/ImageHostingService
 
 
 ## Images [/images/{id}]
-A single Note object with all its details
+
++ Parameters
+    + id (required, number, `1`) ... Numeric `id` of the Note to perform action with. Has example value.
+
++ Model (application/json)
+ 
+    + Body
+ 
+            [{
+            "id": "1",
+            "title": "Squirrel",
+            "content": "http://i.imgur.com/xHVRq7d.jpg"
+            }]
 
 ### Upload an image [POST]
 + Request (application/json)
 
-        { "title": "Squirrel", "content": "http://i.imgur.com/xHVRq7d.jpg" }
+
+
 
 + Response 201 (application/json)
-
-        { "id": 1, "title": "Squirrel", "content": "http://i.imgur.com/xHVRq7d.jpg" }
 
 
 
 ### Retrieve an image [GET]
 + Response 200 (application/json)
 
-
-        { "id": 1, "title": "Squirrel", "content": "http://i.imgur.com/xHVRq7d.jpg" }
+    [Images][]
+       
         
 
 ### Delete an image [DELETE]
