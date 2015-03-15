@@ -27,12 +27,12 @@ $(document).ready(function() {
 		}
 			
 		$.ajax({
-			url: "http://private-31331-ihs1.apiary-mock.com/images/2",
+			url: "http://private-31331-ihs1.apiary-mock.com/images/1",
 			method: "POST",
 			data: {
-				id: 2,
-				title: name,
-				content: url,
+				id:1,
+				title:name,
+				content:url
 			},
 			success: function(result1){
 				alert("Image successfully uploaded.");
