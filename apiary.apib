@@ -30,6 +30,7 @@ An API for https://github.com/Wofho/ImageHostingService
             [{
             "id": "1",
             "title": "Squirrel",
+            "hashtag": "#nature",
             "content": "http://i.imgur.com/xHVRq7d.jpg"
             }]
 
@@ -41,6 +42,17 @@ An API for https://github.com/Wofho/ImageHostingService
 
 + Response 201 (application/json)
 
+    + Headers
+
+            Location: /images/1
+
+    + Body
+
+                {
+                    "id": "2",
+                    "title": name,
+                    "content": url
+                }
 
 
 ### Retrieve an image [GET]
