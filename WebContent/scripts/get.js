@@ -20,19 +20,21 @@ $(document).ready(function() {
 	$("#upload").click(function(){
 		var name = $("#name").val();
 		var url = $("#url").val();
-
-		if (name.length<=0 || url.length<=0) {
-			alert("You must enter a name/URL for this image.");
+		var hash = $("#hash").val();
+		if (name.length<=0 || url.length<=0 || hash.length<=0) {
+			alert("You must enter a name/hashtag/URL for this image.");
 			return false;
 		}
 			
 		$.ajax({
 			url: "http://private-31331-ihs1.apiary-mock.com/images/1",
 			method: "POST",
+			contentType: "application/json",
 			data: {
-				id:1,
-				title:name,
-				content:url
+				"id": 2,
+				"title": name,
+				"hashtag": hash,
+				"content": url
 			},
 			success: function(result1){
 				alert("Image successfully uploaded.");
@@ -51,7 +53,7 @@ $(document).ready(function() {
 				var obj1 = $.parseJSON(JSON.stringify(result3));
 				var image = '';
 				$.each(obj1, function() {
-					image += "<br/>" + this['title'] + "<br/>" + this["content"] + "<br/>";
+					image += "<br/>" + this['title'] + "<br/>" + this["hashtag"] + "<br/>" + this["content"] + "<br/>";
 				});
 				$("#div2").html(image);
 			}
