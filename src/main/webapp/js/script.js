@@ -4,8 +4,12 @@ $(document).ready(function() {
 	
 	$("#categories").click(function(){
 		$.ajax({
-			url: "http://private-31331-ihs1.apiary-mock.com/categories",
+			url: "http://localhost:9090/tanov/rest/category",
 			method: "GET",
+			headers: {          
+				 Accept : "application/json; charset=utf-8",         
+				"Content-Type": "application/json; charset=utf-8"   
+			},
 			success: function(result){
 				var obj = $.parseJSON(JSON.stringify(result));
 				var title = '';
