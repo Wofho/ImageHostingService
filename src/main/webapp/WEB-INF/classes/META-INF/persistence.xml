@@ -6,5 +6,7 @@
     <persistence-unit name="testPU" transaction-type="JTA">
         <jta-data-source>jdbc/Tanov</jta-data-source>
         <class>tanov.entities.Category</class>
+        <class>tanov.entities.Image</class>
+        <class>tanov.entities.User</class>
     </persistence-unit>
 </persistence>

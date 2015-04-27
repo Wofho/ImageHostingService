@@ -27,19 +27,25 @@ $(document).ready(function() {
 	$("#upload").click(function(){
 		var name = $("#name").val();
 		var url = $("#url").val();
-
-		if (name.length<=0 || url.length<=0) {
-			alert("You must enter a name/URL for this image.");
+		var hash = $("#hash").val();
+		var mapsloc1 = $("#mapsloc").val();
+		if (name.length<=0 || url.length<=0 || hash.length<=0 || mapsloc.length<=0) {
+			alert("You must enter all parameters for this image.");
 			return false;
 		}
 			
 		$.ajax({
-			url: "http://private-31331-ihs1.apiary-mock.com/images/2",
+			url: "http://localhost:9090/tanov/rest/image",
 			method: "POST",
+			headers: {          
+				 Accept : "application/json; charset=utf-8",         
+				"Content-Type": "application/json; charset=utf-8"   
+			},			
 			data: {
-				id: 2,
 				title: name,
 				content: url,
+				hashtag: hash,
+				mapsloc: mapsloc1
 			},
 			success: function(result1){
 				alert("Image successfully uploaded.");
@@ -52,8 +58,12 @@ $(document).ready(function() {
 
 	$("#list").click(function(){
 		$.ajax({
-			url: "http://private-31331-ihs1.apiary-mock.com/images/1",
+			url: "http://localhost:9090/tanov/rest/image",
 			method: "GET",
+			headers: {          
+				 Accept : "application/json; charset=utf-8",         
+				"Content-Type": "application/json; charset=utf-8"   
+			},
 			success: function(result3){
 				var obj1 = $.parseJSON(JSON.stringify(result3));
 				var image = '';
@@ -69,7 +79,7 @@ $(document).ready(function() {
 					var pass = $("#pass").val()
 					if (user=="admin"&&pass=="root") {
 						$.ajax({		
-							url: "http://private-31331-ihs1.apiary-mock.com/images/1",
+							url: "http://localhost:9090/tanov/rest/image/1",
 							method: "DELETE",
 							success: function(result4){
 								alert("Image successfully deleted.");
@@ -84,7 +94,7 @@ $(document).ready(function() {
 					var pass = $("#pass").val()
 					if (user=="admin"&&pass=="root") {
 						$.ajax({		
-							url: "http://private-31331-ihs1.apiary-mock.com/images/1",
+							url: "http://localhost:9090/tanov/rest/image/2",
 							method: "DELETE",
 							success: function(result4){
 								alert("Image successfully deleted.");
@@ -99,7 +109,7 @@ $(document).ready(function() {
 					var pass = $("#pass").val()
 					if (user=="admin"&&pass=="root") {
 						$.ajax({		
-							url: "http://private-31331-ihs1.apiary-mock.com/images/1",
+							url: "http://localhost:9090/tanov/rest/image/3",
 							method: "DELETE",
 							success: function(result4){
 								alert("Image successfully deleted.");
@@ -124,6 +134,10 @@ $(document).ready(function() {
 		$.ajax({
 			url: "http://private-31331-ihs1.apiary-mock.com/images/1",
 			method: "GET",
+			headers: {          
+				 Accept : "application/json; charset=utf-8",         
+				"Content-Type": "application/json; charset=utf-8"   
+			},			
 			success: function(result5){
 				var obj2 = $.parseJSON(JSON.stringify(result5));
 				var image2 = '';
@@ -146,7 +160,7 @@ $(document).ready(function() {
 					var pass = $("#pass").val()
 					if (user=="admin"&&pass=="root") {
 						$.ajax({		
-							url: "http://private-31331-ihs1.apiary-mock.com/images/1",
+							url: "http://localhost:9090/tanov/rest/image/1",
 							method: "DELETE",
 							success: function(result4){
 								alert("Image successfully deleted.");
@@ -161,7 +175,7 @@ $(document).ready(function() {
 					var pass = $("#pass").val()
 					if (user=="admin"&&pass=="root") {
 						$.ajax({		
-							url: "http://private-31331-ihs1.apiary-mock.com/images/1",
+							url: "http://localhost:9090/tanov/rest/image/2",
 							method: "DELETE",
 							success: function(result4){
 								alert("Image successfully deleted.");
@@ -176,7 +190,7 @@ $(document).ready(function() {
 					var pass = $("#pass").val()
 					if (user=="admin"&&pass=="root") {
 						$.ajax({		
-							url: "http://private-31331-ihs1.apiary-mock.com/images/1",
+							url: "http://localhost:9090/tanov/rest/image/3",
 							method: "DELETE",
 							success: function(result4){
 								alert("Image successfully deleted.");
