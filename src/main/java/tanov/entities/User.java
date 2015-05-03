@@ -19,7 +19,7 @@ public class User implements Serializable {
 
     @Id
     @GeneratedValue(generator="UUID")
-	private int id;
+	private String id;
 
 	private String pass;
 
@@ -28,11 +28,11 @@ public class User implements Serializable {
 	public User() {
 	}
 
-	public int getId() {
+	public String getId() {
 		return this.id;
 	}
 
-	public void setId(int id) {
+	public void setId(String id) {
 		this.id = id;
 	}
 

@@ -1,8 +1,10 @@
 package tanov.entities;
 
 import java.io.Serializable;
+
 import javax.persistence.*;
 import javax.xml.bind.annotation.XmlRootElement;
+
 import org.eclipse.persistence.annotations.UuidGenerator;
 
 /**
@@ -20,13 +22,13 @@ public class Image implements Serializable {
     @Id
     @GeneratedValue(generator="UUID")
 	private String id;
-
+    @Lob
 	private String content;
-
+    @Lob
 	private String hashtag;
-
+	@Lob
 	private String map;
-
+	@Lob
 	private String title;
 
 	public Image() {

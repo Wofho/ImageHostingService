@@ -1,14 +1,12 @@
 $(document).ready(function() {
 	"use strict"
 	
-	
 	$("#categories").click(function(){
 		$.ajax({
 			url: "http://localhost:9090/tanov/rest/category",
 			method: "GET",
 			headers: {          
-				 Accept : "application/json; charset=utf-8",         
-				"Content-Type": "application/json; charset=utf-8"   
+				 "Accept" : "application/json; charset=utf-8",         
 			},
 			success: function(result){
 				var obj = $.parseJSON(JSON.stringify(result));
@@ -35,25 +33,26 @@ $(document).ready(function() {
 		}
 			
 		$.ajax({
-			url: "http://localhost:9090/tanov/rest/image",
+			url: "http://localhost:9090/tanov/rest/image/123",
 			method: "POST",
 			headers: {          
-				 Accept : "application/json; charset=utf-8",         
-				"Content-Type": "application/json; charset=utf-8"   
+				"Content-Type": "application/json"   
 			},			
 			data: {
-				title: name,
-				content: url,
-				hashtag: hash,
-				mapsloc: mapsloc1
+				"id": "123",
+				"content": "url",
+				"hashtag": "hash",
+				"map": "mapsloc1",
+				"title": "name"
 			},
 			success: function(result1){
-				alert("Image successfully uploaded.");
+				alert("CECO");
 			},
 			error: function(result2){
-				alert("Image not uploaded.");
-			}
+				alert("CECI");
+			}			
 		});
+	//return false;	
 	});
 
 	$("#list").click(function(){
@@ -61,25 +60,25 @@ $(document).ready(function() {
 			url: "http://localhost:9090/tanov/rest/image",
 			method: "GET",
 			headers: {          
-				 Accept : "application/json; charset=utf-8",         
+				 "Accept" : "application/json; charset=utf-8",         
 				"Content-Type": "application/json; charset=utf-8"   
 			},
 			success: function(result3){
 				var obj1 = $.parseJSON(JSON.stringify(result3));
 				var image = '';
 				$.each(obj1, function() {
-					image += "<br/>" + this['title'] + "<br/>" + this['hashtag'] + "<br/>" +'<img src="'+this["content"]+'">' + "<br/>" + '<input type="button" id="delete'+this["id"]+'" value="Delete"/>' + "<br/>" + this["map"] + "<br/>";
+					image += "<br/>" + this['title'] + "<br/>" + this['hashtag'] + "<br/>" +'<img src="'+this["content"]+'">' + "<br/>" + this["map"] + "<br/>" + '<input type="button" id="delete'+this["id"]+'" class="btn btn-danger" data-id='+this["id"]+' value="Delete"/>' + "<br/>";
 				});
 				$("#div2").html('</br><input type="button" id="hideAll" value="Hide all images"/></br>'+image);
 				$("#hideAll").click(function(){
 					$("#div2").html('');
 				});
-				$("#delete1").click(function(){
+				$(".btn-danger").click(function(){
 					var user = $("#user").val()
 					var pass = $("#pass").val()
 					if (user=="admin"&&pass=="root") {
 						$.ajax({		
-							url: "http://localhost:9090/tanov/rest/image/1",
+							url: "http://localhost:9090/tanov/rest/image/"+($(this).data('id')),
 							method: "DELETE",
 							success: function(result4){
 								alert("Image successfully deleted.");
@@ -88,39 +87,7 @@ $(document).ready(function() {
 					} else {
 						alert("You don't have admin rights.");
 					}
-				});
-				$("#delete2").click(function(){
-					var user = $("#user").val()
-					var pass = $("#pass").val()
-					if (user=="admin"&&pass=="root") {
-						$.ajax({		
-							url: "http://localhost:9090/tanov/rest/image/2",
-							method: "DELETE",
-							success: function(result4){
-								alert("Image successfully deleted.");
-							}
-						});
-					} else {
-						alert("You don't have admin rights.");
-					}
-				});
-				$("#delete3").click(function(){
-					var user = $("#user").val()
-					var pass = $("#pass").val()
-					if (user=="admin"&&pass=="root") {
-						$.ajax({		
-							url: "http://localhost:9090/tanov/rest/image/3",
-							method: "DELETE",
-							success: function(result4){
-								alert("Image successfully deleted.");
-							}
-						});
-					} else {
-						alert("You don't have admin rights.");
-					}
-				});
-				
-				
+				});	
 			}
 		});
 	});
@@ -132,10 +99,10 @@ $(document).ready(function() {
 			return false;
 		}
 		$.ajax({
-			url: "http://private-31331-ihs1.apiary-mock.com/images/1",
+			url: "http://localhost:9090/tanov/rest/image",
 			method: "GET",
 			headers: {          
-				 Accept : "application/json; charset=utf-8",         
+				 "Accept" : "application/json; charset=utf-8",         
 				"Content-Type": "application/json; charset=utf-8"   
 			},			
 			success: function(result5){
@@ -143,7 +110,7 @@ $(document).ready(function() {
 				var image2 = '';
 				$.each(obj2, function() {
 					if(searchText==this['hashtag']){
-						image2 += "<br/>" + this['title'] + "<br/>" + this['hashtag'] + "<br/>" +'<img src="'+this["content"]+'">' + "<br/>" + '<input type="button" id="delete'+this["id"]+'" value="Delete"/>' + "<br/>" + this["map"] + "<br/>";
+						image2 += "<br/>" + this['title'] + "<br/>" + this['hashtag'] + "<br/>" +'<img src="'+this["content"]+'">' + "<br/>" + this["map"] + "<br/>" + '<input type="button" id="delete'+this["id"]+'" class="btn btn-danger" data-id='+this["id"]+' value="Delete"/>' + "<br/>";
 					}
 				});
 				if(image2 != '') {
@@ -154,13 +121,12 @@ $(document).ready(function() {
 				$("#hideAllHash").click(function(){
 					$("#div3").html('');
 				});
-				
-				$("#delete1").click(function(){
+				$(".btn-danger").click(function(){
 					var user = $("#user").val()
 					var pass = $("#pass").val()
 					if (user=="admin"&&pass=="root") {
 						$.ajax({		
-							url: "http://localhost:9090/tanov/rest/image/1",
+							url: "http://localhost:9090/tanov/rest/image/"+($(this).data('id')),
 							method: "DELETE",
 							success: function(result4){
 								alert("Image successfully deleted.");
@@ -169,45 +135,14 @@ $(document).ready(function() {
 					} else {
 						alert("You don't have admin rights.");
 					}
-				});
-				$("#delete2").click(function(){
-					var user = $("#user").val()
-					var pass = $("#pass").val()
-					if (user=="admin"&&pass=="root") {
-						$.ajax({		
-							url: "http://localhost:9090/tanov/rest/image/2",
-							method: "DELETE",
-							success: function(result4){
-								alert("Image successfully deleted.");
-							}
-						});
-					} else {
-						alert("You don't have admin rights.");
-					}
-				});
-				$("#delete3").click(function(){
-					var user = $("#user").val()
-					var pass = $("#pass").val()
-					if (user=="admin"&&pass=="root") {
-						$.ajax({		
-							url: "http://localhost:9090/tanov/rest/image/3",
-							method: "DELETE",
-							success: function(result4){
-								alert("Image successfully deleted.");
-							}
-						});
-					} else {
-						alert("You don't have admin rights.");
-					}
-				});					
-							
-					
+				});				
 			}
 		});
 	});
+	
+	
 
-	
-	
+
 
 
 });

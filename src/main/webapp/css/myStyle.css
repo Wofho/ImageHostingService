@@ -1,5 +1,5 @@
 .container{
-width: 380px;
+width: 480px;
 float: left;
 margin-left: 5%;
 border: 1px solid gray;
@@ -8,4 +8,12 @@ border: 1px solid gray;
 img{
     width:350px; /* you can use % */
     height: auto;
+}
+
+#searchText{
+	width:50%;
+}
+
+body {
+   background:#eee;
 }
