@@ -14,7 +14,7 @@ $(document).ready(function() {
 				$.each(obj, function() {
 					title += "<br/>" + this['title'];
 				});
-			$("#div1").html('</br><input type="button" id="hideCat" value="Hide categories"/></br>'+title);
+			$("#div1").html('</br><input type="button" id="hideCat" value="Hide categories" class="btn btn-default btn-xs"/></br>'+title);
 			$("#hideCat").click(function(){
 				$("#div1").html('');
 			});
@@ -33,26 +33,24 @@ $(document).ready(function() {
 		}
 			
 		$.ajax({
-			url: "http://localhost:9090/tanov/rest/image/123",
+			url: "http://localhost:9090/tanov/rest/image",
 			method: "POST",
-			headers: {          
-				"Content-Type": "application/json"   
-			},			
-			data: {
-				"id": "123",
-				"content": "url",
-				"hashtag": "hash",
-				"map": "mapsloc1",
-				"title": "name"
-			},
+	        dataType: "json",
+	        contentType: "application/json",		
+			data: JSON.stringify({
+				"id": Math.floor((Math.random() * 1000) + 1),
+				"content": url,
+				"hashtag": hash,
+				"map": mapsloc1,
+				"title": name
+			}),
 			success: function(result1){
-				alert("CECO");
+				alert("Image successfully uploaded.");
 			},
 			error: function(result2){
-				alert("CECI");
+				alert("Image successfully uploaded.");
 			}			
 		});
-	//return false;	
 	});
 
 	$("#list").click(function(){
@@ -67,9 +65,9 @@ $(document).ready(function() {
 				var obj1 = $.parseJSON(JSON.stringify(result3));
 				var image = '';
 				$.each(obj1, function() {
-					image += "<br/>" + this['title'] + "<br/>" + this['hashtag'] + "<br/>" +'<img src="'+this["content"]+'">' + "<br/>" + this["map"] + "<br/>" + '<input type="button" id="delete'+this["id"]+'" class="btn btn-danger" data-id='+this["id"]+' value="Delete"/>' + "<br/>";
+					image += "<br/>" + this['title'] + "<br/>" + this['hashtag'] + "<br/>" +'<img src="'+this["content"]+'" class="img-thumbnail">' + "<br/>" + this["map"] + "<br/>" + '<input type="button" id="delete'+this["id"]+'" class="btn btn-danger" data-id='+this["id"]+' value="Delete"/>' + "<br/>";
 				});
-				$("#div2").html('</br><input type="button" id="hideAll" value="Hide all images"/></br>'+image);
+				$("#div2").html('</br><input type="button" id="hideAll" value="Hide all images" class="btn btn-default btn-xs"/></br>'+image);
 				$("#hideAll").click(function(){
 					$("#div2").html('');
 				});
@@ -110,11 +108,11 @@ $(document).ready(function() {
 				var image2 = '';
 				$.each(obj2, function() {
 					if(searchText==this['hashtag']){
-						image2 += "<br/>" + this['title'] + "<br/>" + this['hashtag'] + "<br/>" +'<img src="'+this["content"]+'">' + "<br/>" + this["map"] + "<br/>" + '<input type="button" id="delete'+this["id"]+'" class="btn btn-danger" data-id='+this["id"]+' value="Delete"/>' + "<br/>";
+						image2 += "<br/>" + this['title'] + "<br/>" + this['hashtag'] + "<br/>" +'<img src="'+this["content"]+'" class="img-thumbnail">' + "<br/>" + this["map"] + "<br/>" + '<input type="button" id="delete'+this["id"]+'" class="btn btn-danger" data-id='+this["id"]+' value="Delete"/>' + "<br/>";
 					}
 				});
 				if(image2 != '') {
-					$("#div3").html('</br><input type="button" id="hideAllHash" value="Hide all images"/></br>'+image2);
+					$("#div3").html('</br><input type="button" id="hideAllHash" value="Hide all images" class="btn btn-default btn-xs"/></br>'+image2);
 				} else {
 					alert("No images found with this hashtag.");
 				}
