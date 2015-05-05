@@ -65,7 +65,7 @@ $(document).ready(function() {
 				var obj1 = $.parseJSON(JSON.stringify(result3));
 				var image = '';
 				$.each(obj1, function() {
-					image += "<br/>" + this['title'] + "<br/>" + this['hashtag'] + "<br/>" +'<img src="'+this["content"]+'" class="img-thumbnail">' + "<br/>" + this["map"] + "<br/>" + '<input type="button" id="delete'+this["id"]+'" class="btn btn-danger" data-id='+this["id"]+' value="Delete"/>' + "<br/>";
+					image += "<br/><strong>" + this['title'] + "</strong><br/><kbd>" + this['hashtag'] + "</kbd><br/><br>" +'<img src="'+this["content"]+'" class="img-thumbnail">' + "<br/>" + "<img src='http://maps.google.com/maps/api/staticmap?center="+this["map"]+"&zoom=16&size=350x350&markers="+this["map"]+"&maptype=hybrid' class='img-thumbnail'>" + "<br/>" + '<input type="button" id="delete'+this["id"]+'" class="btn btn-danger" data-id='+this["id"]+' value="Delete"/>' + "<br/>";
 				});
 				$("#div2").html('</br><input type="button" id="hideAll" value="Hide all images" class="btn btn-default btn-xs"/></br>'+image);
 				$("#hideAll").click(function(){
@@ -108,7 +108,7 @@ $(document).ready(function() {
 				var image2 = '';
 				$.each(obj2, function() {
 					if(searchText==this['hashtag']){
-						image2 += "<br/>" + this['title'] + "<br/>" + this['hashtag'] + "<br/>" +'<img src="'+this["content"]+'" class="img-thumbnail">' + "<br/>" + this["map"] + "<br/>" + '<input type="button" id="delete'+this["id"]+'" class="btn btn-danger" data-id='+this["id"]+' value="Delete"/>' + "<br/>";
+						image2 += "<br/><strong>" + this['title'] + "</strong><br/><kbd>" + this['hashtag'] + "</kbd><br/><br>" +'<img src="'+this["content"]+'" class="img-thumbnail">' + "<br/>" + "<img src='http://maps.google.com/maps/api/staticmap?center="+this["map"]+"&zoom=16&size=350x350&markers="+this["map"]+"&maptype=hybrid' class='img-thumbnail'>" + "<br/>" + '<input type="button" id="delete'+this["id"]+'" class="btn btn-danger" data-id='+this["id"]+' value="Delete"/>' + "<br/>";
 					}
 				});
 				if(image2 != '') {
